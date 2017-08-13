@@ -1,9 +1,7 @@
 <h1>Welcome, <%= @user.username %>.</h1>
 
-
-<form action='/' method=>
-  <input type="text" name="task" placeholder="Task"><br>
-  <input type="text" name="guest" placeholder="Cleaner"><br>
+<form action='/tasks/new' method="get">
+  <input type="hidden" name="_method", value="get"><br>
   <input type="submit" value="Assign Task">
 </form>
 

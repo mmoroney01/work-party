@@ -1,0 +1,26 @@
+body {
+  background-color: lightblue;
+  border-color: blue;
+  border-style: solid;
+}
+
+h1 {
+  color: blue;
+  padding-left: 40px;
+  padding-top: 10px;
+}
+
+p {
+  color: blue;
+  padding-left: 40px;
+}
+
+form {
+  color: blue;
+  text-align: left;
+  padding-left: 40px;
+}
+
+h6 {
+  padding-left: 40px;
+}

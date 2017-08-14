@@ -7,7 +7,7 @@ post '/sessions' do
 
   if @user
     session[:id] = @user.id
-    redirect "users/#{@user.id}"
+    redirect "/users/#{@user.id}"
   else
     erb :failed_login
   end

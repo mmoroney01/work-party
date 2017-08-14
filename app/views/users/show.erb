@@ -1,8 +1,11 @@
 <h1>Welcome, <%= @user.username %>.</h1>
 
-<form action='/tasks/new' method="get">
-  <input type="hidden" name="_method", value="get"><br>
-  <input type="submit" value="Assign Task">
+
+<p>Start a new work party</p>
+<form action='/cleanings' method="post">
+  <input type="text" name="cleaning[location]" placeholder="Where?"><br>
+  <input type="text" name="cleaning[start_time]" placeholder="When?"><br>
+  <input type="submit" value="Make Work Party">
 </form>
 
 <form action='/sessions/:id' method="post">

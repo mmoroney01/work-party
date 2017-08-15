@@ -1,6 +1,6 @@
 <h1>Assign a Task</h1>
 
-<form action='/tasks' method="post">
+<form action="/<%= @cleaning.id %>/tasks" method="post">
   <input type="text" name="task[description]" placeholder="Task"><br>
   <input type="text" name="guest[first_name]" placeholder="Cleaner's First Name"><br>
   <input type="text" name="guest[last_name]" placeholder="Cleaner's Last Name"></br>
@@ -8,13 +8,4 @@
 </form>
 
 <!-- button to stop assigning tasks -->
-<form action="/users/#{session[:id]}" method='get'>
-
-
-
-
-
-<!-- <form action='/tasks/new' method="get">
-  <input type="hidden" name="_method", value="get"><br>
-  <input type="submit" value="Assign Task">
-</form> -->
+<!-- <form action="/users/#{session[:id]}" method='get'> -->

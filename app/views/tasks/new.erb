@@ -1,9 +1,10 @@
 <h1>Assign a Task</h1>
 
-<form action="/<%= @cleaning.id %>/tasks" method="post">
+<form action="/<%= @cleaning.id %>/tasks" method="post" class="assign-task">
   <input type="text" name="task[description]" placeholder="Task"><br>
   <input type="text" name="guest[first_name]" placeholder="Cleaner's First Name"><br>
   <input type="text" name="guest[last_name]" placeholder="Cleaner's Last Name"></br>
+  <input type="text" name="guest[number]" placeholder="Cleaner's # Number"><br>
   <input type="submit" value="Assign Task">
 </form>
 

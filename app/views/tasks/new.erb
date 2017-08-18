@@ -1,5 +1,7 @@
 <h1>Assign a Task</h1>
 
+<%= erb :'/tasks/_guestspartial' %>
+
 <form action="/<%= @cleaning.id %>/tasks" method="post" class="assign-task">
   <input type="text" name="task[description]" placeholder="Task"><br>
   <input type="text" name="guest[first_name]" placeholder="Cleaner's First Name"><br>
@@ -8,5 +10,7 @@
   <input type="submit" value="Assign Task">
 </form>
 
-<!-- button to stop assigning tasks -->
-<!-- <form action="/users/#{session[:id]}" method='get'> -->
+<form action="/cleanings/<%= @cleaning.id %>" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Send Messages">
+</form>

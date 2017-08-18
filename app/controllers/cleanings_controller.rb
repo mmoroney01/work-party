@@ -10,3 +10,14 @@ post '/cleanings' do
     redirect "/users/#{session[:id]}"
   end
 end
+
+delete '/cleanings/:id' do
+  p params
+  @cleaning = Cleaning.find(params[:id])
+
+  #TWILIO LOGIC GOES HERE, SEND OUT ALL MESSAGES
+
+  @cleaning.destroy
+
+  redirect '/users/#{session[:id]'
+end

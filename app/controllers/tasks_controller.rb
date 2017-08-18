@@ -1,8 +1,6 @@
 get '/:id/tasks/new' do
   @cleaning = Cleaning.find(params[:id])
-#  @guests = @cleaning.guests
-#  @tasks = @cleaning.tasks
-
+  @guests = @cleaning.guests
   erb :'tasks/new'
 end
 
@@ -20,17 +18,32 @@ post '/:id/tasks' do
   end
 
   #reassign @guest to the guest that was just saved.
-  @guest = Guest.where({first_name: guest_hash[:first_name], last_name: guest_hash[:last_name], number: guest_hash[:number]})
+  @realguest = Guest.where({first_name: guest_hash[:first_name], last_name: guest_hash[:last_name], number: guest_hash[:number]})
 
   #make a new task object associated with the guest.
-  @task = Task.new({description: task_hash[:description], guest_id: @guest[0].id})
+  @task = Task.new({description: task_hash[:description], guest_id: @realguest[0].id})
 
   #find the work party that we're current assigning tasks for.
   @cleaning = Cleaning.find(params[:id])
+
+  #make a new cleaningguest instance, find a way to do without this join table IF TIME.
+  @cleaningguest = CleaningGuest.new(cleaning_id: @cleaning.id, guest_id: @realguest[0].id)
+  @cleaningguest.save
 
   if @task.save
     redirect "/#{@cleaning.id}/tasks/new"
   else
     erb :'tasks/new'
   end
+
+  #AJAXified task routes
+  # if request.xhr?
+  #   if @task.save
+  #     erb :"/tasks/_guestspartial", layout: false, locals: {guests: @guests}
+  #   else
+  #     status 422
+  #   end
+  # else
+  #   redirect "/#{@cleaning.id}/tasks/new"
+  # end
 end

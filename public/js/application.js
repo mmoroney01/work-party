@@ -5,19 +5,20 @@ $(document).ready(function() {
 
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
 
-  // $(".assign-task").on("submit", function(){
+  // $(".assign-task").on("submit", ".task-form", function(){
   //   event.preventDefault();
 
   //   var $data = $(this).serialize();
   //   var $url = $(this).attr("action");
   //   var $method = $(this).attr("method");
 
-  //   $.ajax({
+  //   var request = $.ajax({
   //     type: $method,
   //     url: $url,
   //     data: $data
   //   })
-  //   .done(function(response){
+
+  //   request.done(function(response){
   //     console.log(response);
   //   })
 

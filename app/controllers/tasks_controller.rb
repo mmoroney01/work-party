@@ -1,18 +1,6 @@
 get '/:id/tasks/new' do
   @cleaning = Cleaning.find(params[:id])
   @guests = @cleaning.guests
-
-  # p '*' * 80
-  # p @cleaning
-  # p '*' * 80
-  # p Guest.last
-  # p '*' * 80
-  # p CleaningGuest.last
-  # p '*' * 80
-  # p @guests
-  # p '*' * 80
-#  @tasks = @cleaning.tasks
-
   erb :'tasks/new'
 end
 
@@ -38,7 +26,6 @@ post '/:id/tasks' do
   #find the work party that we're current assigning tasks for.
   @cleaning = Cleaning.find(params[:id])
 
-
   #make a new cleaningguest instance, find a way to do without this join table IF TIME.
   @cleaningguest = CleaningGuest.new(cleaning_id: @cleaning.id, guest_id: @realguest[0].id)
   @cleaningguest.save
@@ -48,4 +35,15 @@ post '/:id/tasks' do
   else
     erb :'tasks/new'
   end
+
+  #AJAXified task routes
+  # if request.xhr?
+  #   if @task.save
+  #     erb :"/tasks/_guestspartial", layout: false, locals: {guests: @guests}
+  #   else
+  #     status 422
+  #   end
+  # else
+  #   redirect "/#{@cleaning.id}/tasks/new"
+  # end
 end

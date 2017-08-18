@@ -1,4 +1,8 @@
-<% @guests.each do |guest| %>
-  <%= guest.first_name %><br>
-  <%= guest.last_name %><br>
-<%end%>
+<div class="assigned">
+  <ul><% @guests.each do |guest| %>
+    <li><%= guest.first_name %> <%= guest.last_name %></li>
+    <% guest.tasks.each do |task| %>
+      <li><%= task.description %></li><br>
+    <% end %>
+  <%end%></ul>
+</div>

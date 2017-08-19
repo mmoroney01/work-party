@@ -4,10 +4,13 @@ end
 
 post '/users' do
   @user = User.new(params[:user])
+
   if @user.save
+    status 200
     session[:id] = @user.id
     redirect '/sessions/new'
   else
+    status 400
     @errors = @user.errors.full_messages
     erb :'users/new'
   end

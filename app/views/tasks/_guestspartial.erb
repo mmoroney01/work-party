@@ -1,5 +1,4 @@
-<div id="<% guest.id %>"
-<%= guest.first_name %> <%= guest.last_name + ":" %>
-<% guest.tasks.each do |task| %>
-  <%= "-" + " " + task.description + "\n" %>
-<% end %>
+<div id="<%= guest.id %>">
+  <%= guest.first_name %> <%= guest.last_name + ":" %>
+  <%= task.description %>
+</div>

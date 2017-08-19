@@ -1,6 +1,13 @@
 <h1>Assign a Task</h1>
 
-<%= erb :'/tasks/_guestspartial' %>
+<div class="assigned">
+  <% @guests.each do |guest| %>
+    <%= guest.first_name %> <%= guest.last_name + ":" %>
+    <% guest.tasks.each do |task| %>
+      <%= "-" + " " + task.description + "\n" %>
+    <% end %>
+  <%end%>
+</div>
 
 <div class="assign-task">
   <form action="/<%= @cleaning.id %>/tasks" method="post" class="task-form">

@@ -12,8 +12,9 @@ post '/cleanings' do
 end
 
 delete '/cleanings/:id' do
-  p params
-  @cleaning = Cleaning.find(params[:id])
+  #because the cleaning ids start at zero
+  # id = (params[:id].to_i - 1).to_s
+  # @cleaning = Cleaning.find(id)
 
   #TWILIO LOGIC GOES HERE, SEND OUT ALL MESSAGES
 

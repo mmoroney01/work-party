@@ -8,42 +8,42 @@ post '/:id/tasks' do
   task_hash = params[:task]
   guest_hash = params[:guest]
 
-  #finds an existing guest, if there is one
-  @guest = Guest.where({first_name: guest_hash[:first_name], last_name: guest_hash[:last_name], number: guest_hash[:number]})
+  @guest = Guest.find_or_initialize_by({first_name: guest_hash[:first_name], last_name: guest_hash[:last_name], number: guest_hash[:number]})
 
-  #if the guest doesn't already exist, make a new one and save it
-  if @guest.empty?
-    @guest = Guest.new({first_name: guest_hash[:first_name], last_name: guest_hash[:last_name], number: guest_hash[:number]})
-    @guest.save
-  end
+  @guest.save
 
-  #reassign @guest to the guest that was just saved.
-  @realguest = Guest.where({first_name: guest_hash[:first_name], last_name: guest_hash[:last_name], number: guest_hash[:number]})
+  @task = Task.new({description: task_hash[:description], guest_id: @guest.id})
 
-  #make a new task object associated with the guest.
-  @task = Task.new({description: task_hash[:description], guest_id: @realguest[0].id})
-
-  #find the work party that we're current assigning tasks for.
   @cleaning = Cleaning.find(params[:id])
 
-  #make a new cleaningguest instance, find a way to do without this join table IF TIME.
-  @cleaningguest = CleaningGuest.new(cleaning_id: @cleaning.id, guest_id: @realguest[0].id)
+  @cleaningguest = CleaningGuest.new(cleaning_id: @cleaning.id, guest_id: @guest.id)
   @cleaningguest.save
 
-  if @task.save
-    redirect "/#{@cleaning.id}/tasks/new"
+  if request.xhr?
+    if @task.save
+      return erb :"/tasks/_guestspartial", layout: false, locals: {guest: @guest}
+    else
+      status 422
+    end
   else
-    erb :'tasks/new'
+    redirect "/#{@cleaning.id}/tasks/new"
   end
 
-  #AJAXified task routes
-  # if request.xhr?
-  #   if @task.save
-  #     erb :"/tasks/_guestspartial", layout: false, locals: {guests: @guests}
-  #   else
-  #     status 422
-  #   end
-  # else
-  #   redirect "/#{@cleaning.id}/tasks/new"
+  # if @guest.empty?
+  #   @guest = Guest.new({first_name: guest_hash[:first_name], last_name: guest_hash[:last_name], number: guest_hash[:number]})
+  #   @guest.save
   # end
+
+  # #reassign @guest to the guest that was just saved.
+  # @realguest = Guest.where({first_name: guest_hash[:first_name], last_name: guest_hash[:last_name], number: guest_hash[:number]})
+
+
+
+  # if @task.save
+  #   redirect "/#{@cleaning.id}/tasks/new"
+  # else
+  #   erb :'tasks/new'
+  # end
+
+  #AJAXified task routes
 end

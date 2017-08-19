@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+  taskListener();
 });
 
 var taskListener = function(){
@@ -18,7 +18,7 @@ var taskListener = function(){
 
     request.done(function(response){
       console.log(response);
-      $("#assigned").append(response);
+      $(".assigned").append(response);
     })
 
   })

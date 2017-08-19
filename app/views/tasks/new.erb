@@ -1,12 +1,7 @@
 <h1>Assign a Task</h1>
 
+<!-- fix issue with all tasks gone when refresh IF TIME -->
 <div class="assigned">
-  <% @guests.each do |guest| %>
-    <%= guest.first_name %> <%= guest.last_name + ":" %>
-    <% guest.tasks.each do |task| %>
-      <%= "-" + " " + task.description + "\n" %>
-    <% end %>
-  <%end%>
 </div>
 
 <div class="assign-task">

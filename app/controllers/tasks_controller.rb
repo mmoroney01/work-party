@@ -21,29 +21,12 @@ post '/:id/tasks' do
 
   if request.xhr?
     if @task.save
-      return erb :"/tasks/_guestspartial", layout: false, locals: {guest: @guest}
+      return erb :"/tasks/_guestspartial", layout: false, locals: {guest: @guest, task: @task}
     else
       status 422
     end
   else
+    status 404
     redirect "/#{@cleaning.id}/tasks/new"
   end
-
-  # if @guest.empty?
-  #   @guest = Guest.new({first_name: guest_hash[:first_name], last_name: guest_hash[:last_name], number: guest_hash[:number]})
-  #   @guest.save
-  # end
-
-  # #reassign @guest to the guest that was just saved.
-  # @realguest = Guest.where({first_name: guest_hash[:first_name], last_name: guest_hash[:last_name], number: guest_hash[:number]})
-
-
-
-  # if @task.save
-  #   redirect "/#{@cleaning.id}/tasks/new"
-  # else
-  #   erb :'tasks/new'
-  # end
-
-  #AJAXified task routes
 end

@@ -6,10 +6,12 @@ post '/sessions' do
   @user = User.authenticate(params[:email], params[:password])
 
   if @user
+    status 200
     session[:id] = @user.id
     redirect "/users/#{@user.id}"
   else
-    erb :failed_login
+    status 400
+    redirect '/sessions/new'
   end
 end
 

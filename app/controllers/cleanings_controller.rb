@@ -1,12 +1,12 @@
-#Start a new work party.
-
 post '/cleanings' do
   @cleaning = Cleaning.new(params[:cleaning])
 
   if @cleaning.save
+    status 200
     redirect "/#{@cleaning.id}/tasks/new"
   else
-    #tell them it didn't work
+    status 400
+    @errors = @cleaning.errors
     redirect "/users/#{session[:id]}"
   end
 end

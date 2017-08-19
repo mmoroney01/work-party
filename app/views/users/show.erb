@@ -1,5 +1,9 @@
 <h1>Welcome, <%= @user.username %>.</h1>
 
+<!-- come back to this if time -->
+<% if @errors %>
+  <%= @errors %>
+<% end %>
 
 <p>Start a new work party</p>
 <form action='/cleanings' method="post">

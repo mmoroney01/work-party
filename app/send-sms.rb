@@ -5,7 +5,7 @@ auth_token = 'dc9591ac96229ac7271edba16a26befe'
 @client = Twilio::REST::Client.new account_sid, auth_token
 
 @client.messages.create(
-  from: '18722013993',
-  to: '12246320584',
+  from: '',
+  to: '',
   body: 'great job'
 )

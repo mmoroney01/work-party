@@ -2,7 +2,9 @@
 
 <!-- come back to this if time -->
 <% if @errors %>
-  <%= @errors %>
+  <ul><% @errors.each do |error| %>
+    <li><%= error %></li>
+  <% end %></ul>
 <% end %>
 
 <p>Start a new work party</p>

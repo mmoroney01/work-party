@@ -4,6 +4,10 @@ body {
   border-style: solid;
 }
 
+li {
+  padding-left: 40px;
+}
+
 h1 {
   color: blue;
   padding-left: 40px;

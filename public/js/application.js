@@ -20,6 +20,6 @@ var taskListener = function(){
       console.log(response);
       $(".assigned").append(response);
     })
-
   })
 }
+

@@ -1,17 +1,9 @@
-<h1>Welcome, <%= @user.username %>.</h1>
+<h1>Welcome back, <%= @user.username %>.</h1>
 
-<!-- come back to this if time -->
-<% if @errors %>
-  <ul><% @errors.each do |error| %>
-    <li><%= error %></li>
-  <% end %></ul>
-<% end %>
-
-<p>Start a new work party</p>
 <form action='/cleanings' method="post">
   <input type="text" name="cleaning[location]" placeholder="Where?"><br>
-  <input type="text" name="cleaning[start_time]" placeholder="When?"><br>
-  <input type="submit" value="Make Work Party">
+  <input type="text" name="cleaning[start_time]" placeholder="When?"><br><br>
+  <input type="submit" value="Start a New Work Party">
 </form>
 
 <form action='/sessions/:id' method="post">

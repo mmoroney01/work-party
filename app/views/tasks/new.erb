@@ -1,7 +1,4 @@
 <br>
-<form action="/users/<%= current_user.id %>">
-  <input type="submit" value="Home">
-</form>
 
 <h1>Assign a Task</h1>
 
@@ -18,7 +15,7 @@
     <input type="text" name="task[description]" placeholder="Task"><br>
     <input type="text" name="guest[first_name]" placeholder="Cleaner's First Name"><br>
     <input type="text" name="guest[last_name]" placeholder="Cleaner's Last Name"></br>
-    <input type="text" name="guest[number]" placeholder="Cleaner's # Number"><br>
+    <input type="text" name="guest[number]" placeholder="Cleaner's # Number"><br><br>
     <input type="submit" value="Assign Task">
   </form>
 </div>
@@ -27,4 +24,7 @@
   <input type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Send Messages">
 </form>
-<br>
+
+<form action="/users/<%= current_user.id %>">
+  <input type="submit" value="Home">
+</form>

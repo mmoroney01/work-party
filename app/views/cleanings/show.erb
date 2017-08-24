@@ -17,10 +17,10 @@
 
 <%= erb :'/tasks/new' %>
 
-  <form method="get" action="/cleanings/<%= @cleaning.id %>/edit">
-      <input type="submit" value="Edit">
-  </form>
-  <form method="post" action="/cleanings/<%= @cleaning.id %>">
-    <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="Delete">
-  </form>
+<form method="get" action="/cleanings/<%= @cleaning.id %>/edit">
+    <input type="submit" value="Edit">
+</form>
+<form method="post" action="/cleanings/<%= @cleaning.id %>">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete">
+</form>

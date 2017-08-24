@@ -47,22 +47,46 @@ get '/cleanings/:id' do
   end
 end
 
-delete '/cleanings/:id' do
-  account_sid = 'AC1ed068dc6c7d93f97f927d064031758e'
-  auth_token = 'dc9591ac96229ac7271edba16a26befe'
-  @client = Twilio::REST::Client.new account_sid, auth_token
+#form can be ajaxified
 
+get '/cleanings/:id/edit' do
+  p "heck"
   @cleaning = Cleaning.find(params[:id])
 
-  @cleaning.guests.each do |guest|
-    send_message(@cleaning, guest, @client)
+  if @cleaning.user_id == session[:user_id]
+    if request.xhr?
+      erb :'/cleanings/edit'
+    else
+    end
   end
-
-  @cleaning.destroy
-  redirect "/users/#{session[:user_id]}"
 end
 
+put '/cleanings/:id' do
+  @cleaning = Cleaning.find(params[:id])
+  @cleaning.assign_attributes(params[:cleaning])
 
+  if @cleaning.save
+    redirect "/cleanings/#{@cleaning.id}"
+  else
+    errors = @cleaning.errors.full_messages
+    erb :'/potlucks/edit'
+  end
+end
 
+#NOTE: Can only send texts to myself, must purchase a Twilio number to send to "unverified" numbers
+delete '/cleanings/:id' do
+  @cleaning = Cleaning.find(params[:id])
+  @user = User.find(@cleaning.user_id)
+  if session[:user_id] == @user.id
+    account_sid = 'AC1ed068dc6c7d93f97f927d064031758e'
+    auth_token = 'dc9591ac96229ac7271edba16a26befe'
+    @client = Twilio::REST::Client.new account_sid, auth_token
 
+    @cleaning.guests.each do |guest|
+      send_message(@cleaning, guest, @client)
+    end
 
+    @cleaning.destroy
+    redirect "/users/#{session[:user_id]}"
+  end
+end

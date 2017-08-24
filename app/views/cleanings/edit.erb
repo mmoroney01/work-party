@@ -1,0 +1,12 @@
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <%= error %>
+  <% end %>
+<% end %>
+
+<form id="edit-submit" action="/cleanings/<%= @cleaning.id %>" method="post">
+  <input type="hidden" name="_method", value="put"><br>
+  <input type="text" name="cleaning[location]" value="<%= @cleaning.location %>"><br>
+  <input type="text" name="cleaning[start_time]" value="<%= @cleaning.start_time %>"><br>
+  <input type="submit" value="Change Deets">
+</form>

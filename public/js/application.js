@@ -1,6 +1,25 @@
 $(document).ready(function() {
   taskListener();
+  editButtonListener();
 });
+
+var editButtonListener = function(){
+  $("#edit").on("submit", function(){
+    event.preventDefault();
+
+    var $url = $(this).attr("action");
+    var $method = $(this).attr("method");
+
+    var request = $.ajax({
+      url: $url,
+      method: $method
+    })
+
+    request.done(function(response){
+      $(".edit-container").append(response);
+    })
+  })
+}
 
 var taskListener = function(){
   $(".task-form").on("submit", function(){
@@ -18,7 +37,7 @@ var taskListener = function(){
 
     request.done(function(response){
       $(".assigned-tasks").append(response);
-      $(".task-form").reset();
+      $(".task-form")[0].reset();
     })
   })
 }

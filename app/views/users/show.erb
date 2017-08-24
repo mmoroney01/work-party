@@ -1,10 +1,24 @@
-<h1>Welcome back, <%= @user.username %>.</h1>
+<h1>Welcome, <%= @user.username %>.</h1>
+
+<% if @errors %>
+  <ul><% @errors.each do |error| %>
+    <li><%= error %></li>
+  <% end %></ul>
+<% end %>
 
 <form action='/cleanings' method="post">
   <input type="text" name="cleaning[location]" placeholder="Where?"><br>
-  <input type="text" name="cleaning[start_time]" placeholder="When?"><br><br>
+  <input type="text" name="cleaning[start_time]" placeholder="When?"><br>
   <input type="submit" value="Start a New Work Party">
 </form>
+
+<br>
+
+<% if @cleanings %>
+  <% @cleanings.each do |cleaning| %>
+    <a href="/cleanings/<%= cleaning.id %>"><%= cleaning.location %> <%= cleaning.start_time %></a><br>
+  <% end %>
+<% end %>
 
 <form action='/sessions/:id' method="post">
   <input type="hidden" name="_method", value="delete"><br>

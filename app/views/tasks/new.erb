@@ -1,14 +1,6 @@
 <br>
 
-<h1>Assign a Task</h1>
-
-<div class="assigned">
-  <% @cleaning.guests.each do |guest| %>
-    <% guest.tasks.each do |task| %>
-    <p id="<%= guest.id %>"><%= guest.first_name %> <%= guest.last_name + ":" + " "%><%= task.description %></p>
-    <% end %>
-  <% end %>
-</div>
+<h2>Assign a Task</h2>
 
 <div class="assign-task">
   <form action="/<%= @cleaning.id %>/tasks" method="post" class="task-form">

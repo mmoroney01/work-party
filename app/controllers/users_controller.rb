@@ -8,7 +8,7 @@ post '/users' do
   if @user.save
     status 200
     session[:id] = @user.id
-    redirect '/sessions/new'
+    redirect "/users/#{@user.id}"
   else
     status 400
     @errors = @user.errors.full_messages
@@ -17,6 +17,7 @@ post '/users' do
 end
 
 get '/users/:id' do
+  @cleanings = Cleaning.all
   @user = User.find(params[:id])
   erb :'/users/show'
 end

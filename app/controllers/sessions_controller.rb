@@ -11,7 +11,8 @@ post '/sessions' do
     redirect "/users/#{@user.id}"
   else
     status 400
-    redirect '/sessions/new'
+    @error = "Username and/or password invalid."
+    erb :'/sessions/new'
   end
 end
 

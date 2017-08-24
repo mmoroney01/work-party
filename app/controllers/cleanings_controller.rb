@@ -26,7 +26,7 @@ post '/cleanings' do
   start = params[:start_time]
   user_id = session[:user_id]
 
-  @cleaning = Cleaning.new(start_time: start, location: location, user_id: user_id)
+  @cleaning = Cleaning.new(start_time: start, location: location, user_id: session[:user_id])
 
   if @cleaning.save
     status 200
@@ -34,7 +34,7 @@ post '/cleanings' do
   else
     status 400
     @errors = @cleaning.errors.full_messages
-    @user = User.find(session[:id])
+    @user = User.find(session[:user_id])
     erb :'/users/show'
   end
 end
@@ -42,7 +42,9 @@ end
 get '/cleanings/:id' do
   @cleaning = Cleaning.find(params[:id])
   @user = User.find(@cleaning.user_id)
-  erb :'/cleanings/show'
+  if session[:user_id] == @user.id
+    erb :'/cleanings/show'
+  end
 end
 
 delete '/cleanings/:id' do
@@ -57,7 +59,7 @@ delete '/cleanings/:id' do
   end
 
   @cleaning.destroy
-  redirect "/users/#{session[:id]}"
+  redirect "/users/#{session[:user_id]}"
 end
 
 

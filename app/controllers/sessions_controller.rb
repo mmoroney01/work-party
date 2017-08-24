@@ -7,7 +7,7 @@ post '/sessions' do
 
   if @user
     status 200
-    session[:id] = @user.id
+    session[:user_id] = @user.id
     redirect "/users/#{@user.id}"
   else
     status 400
@@ -17,6 +17,6 @@ post '/sessions' do
 end
 
 delete '/sessions/:id' do
-  session[:id] = nil
+  session[:user_id] = nil
   redirect '/'
 end

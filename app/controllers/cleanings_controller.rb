@@ -50,7 +50,6 @@ end
 #form can be ajaxified
 
 get '/cleanings/:id/edit' do
-  p "heck"
   @cleaning = Cleaning.find(params[:id])
 
   if @cleaning.user_id == session[:user_id]
@@ -74,9 +73,11 @@ put '/cleanings/:id' do
 end
 
 #NOTE: Can only send texts to myself, must purchase a Twilio number to send to "unverified" numbers
+
 delete '/cleanings/:id' do
   @cleaning = Cleaning.find(params[:id])
   @user = User.find(@cleaning.user_id)
+
   if session[:user_id] == @user.id
     account_sid = 'AC1ed068dc6c7d93f97f927d064031758e'
     auth_token = 'dc9591ac96229ac7271edba16a26befe'

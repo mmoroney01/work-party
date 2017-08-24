@@ -1,7 +1,3 @@
-<br>
-
-<h2>Assign a Task</h2>
-
 <div class="assign-task">
   <form action="/<%= @cleaning.id %>/tasks" method="post" class="task-form">
     <input type="text" name="task[description]" placeholder="Task"><br>
@@ -12,11 +8,9 @@
   </form>
 </div>
 
-<form action="/cleanings/<%= @cleaning.id %>" method="post">
-  <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Send Messages">
-</form>
-
-<form action="/users/<%= current_user.id %>">
-  <input type="submit" value="Home">
-</form>
+<div>
+  <form action="/cleanings/<%= @cleaning.id %>" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Send Messages">
+  </form>
+</div>

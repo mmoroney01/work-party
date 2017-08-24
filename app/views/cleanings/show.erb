@@ -1,4 +1,10 @@
-<h2>You have scheduled a work party at <%= @cleaning.location %> with a start time of <%= @cleaning.start_time %>.<h2>
+<div>
+  <form action="/users/<%= current_user.id %>">
+    <input type="submit" value="Home">
+  </form>
+</div>
+
+<h2>You have scheduled a work party at <%= @cleaning.location %> with a start time of <%= @cleaning.start_time.strftime("%H:%M") %>.<h2>
 
 <div class="assigned-tasks">
 <% @cleaning.guests.each do |guest| %>
@@ -7,5 +13,18 @@
   <% end %></ul>
 <% end %>
 </div>
-
+<br>
 <%= erb :'/tasks/new' %>
+
+
+
+<% if session[:user_id] == @user.id %>
+
+  <form method="get" action="/cleanings/<%= @cleaning.id %>/edit">
+      <input type="submit" value="Edit">
+  </form>
+  <form method="post" action="/cleanings/<%= @cleaning.id %>">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete">
+  </form>
+<% end %>

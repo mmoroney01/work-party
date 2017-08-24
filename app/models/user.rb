@@ -2,6 +2,9 @@ require 'bcrypt'
 
 class User < ApplicationRecord
   include BCrypt
+
+  has_many :cleanings
+
   validates :username, null: false, uniqueness: true
   validates :email, null: false, uniqueness: true
   validates :password_hash, null: false

@@ -1,7 +1,15 @@
 source 'https://rubygems.org'
 
 # PostgreSQL driver
-gem 'pg'
+#gem 'pg'
+
+group :development, :test do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
+end
 
 # Sinatra driver
 gem 'sinatra', '~> 1.0'

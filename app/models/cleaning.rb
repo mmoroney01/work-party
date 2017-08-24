@@ -4,6 +4,5 @@ class Cleaning < ApplicationRecord
 
   validates :start_time, :location, null: false
 
-  # validates_presence_of :start_time, message: "Work Party requires a start time."
-  # validates_presence_of :location, message: "Work Party requires a location."
+  validates_presence_of :start_time, :location
 end

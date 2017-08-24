@@ -6,15 +6,9 @@ class User < ApplicationRecord
   validates :email, null: false, uniqueness: true
   validates :password_hash, null: false
 
-  validates_presence_of :username, message: "Username cannot be left blank."
-  validates_presence_of :username, message: "Email cannot be left blank."
-  validates_presence_of :password_hash, message: "Password cannot be left blank."
+  validates_presence_of :username, :email, :password_hash
 
-  validates_uniqueness_of :username, message: "Username must be unique."
-
-  validates_uniqueness_of :email, message: "Email must be unique."
-
-
+  validates_uniqueness_of :username, :email
 
   def password
     @password ||= Password.new(password_hash)

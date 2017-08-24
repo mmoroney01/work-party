@@ -68,7 +68,7 @@ put '/cleanings/:id' do
     redirect "/cleanings/#{@cleaning.id}"
   else
     errors = @cleaning.errors.full_messages
-    erb :'/potlucks/edit'
+    erb :'/cleanings/edit'
   end
 end
 

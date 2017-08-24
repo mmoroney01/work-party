@@ -1,4 +1,5 @@
 class Cleaning < ApplicationRecord
+  belongs_to :user
   has_many :cleaning_guests
   has_many :guests, through: :cleaning_guests
 

@@ -1,11 +1,27 @@
-<h2>You have scheduled a work party at <%= @cleaning.location %> with a start time of <%= @cleaning.start_time %>.<h2>
+<div>
+  <form action="/users/<%= current_user.id %>">
+    <input type="submit" value="Home">
+  </form>
+</div>
+
+<h2>You have scheduled a work party at <%= @cleaning.location %> that starts at <%= @cleaning.start_time.strftime("%H:%M") %>.<h2>
 
 <div class="assigned-tasks">
 <% @cleaning.guests.each do |guest| %>
-  <ul><% guest.tasks.each do |task| %>
-    <li><%= guest.first_name %> <%= guest.last_name %> will <%= task.description %></li>
-  <% end %></ul>
+  <% guest.tasks.each do |task| %>
+
+  <div id="<%= task.id%>">
+    <%= guest.first_name %> <%= guest.last_name %> will <%= task.description %>
+  </div>
+  <% end %>
 <% end %>
 </div>
+<br>
 
 <%= erb :'/tasks/new' %>
+
+<div class="edit-container">
+  <form id="edit" method="get" action="/cleanings/<%= @cleaning.id %>/edit">
+      <input type="submit" value="Edit">
+  </form>
+</div>

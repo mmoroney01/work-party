@@ -30,3 +30,20 @@ post '/:id/tasks' do
     redirect "/#{@cleaning.id}/tasks/new"
   end
 end
+
+#DELETE TASKS
+
+# <form class="delete-task" action='/tasks/<%= task.id %>' method="post">
+#   <input type="hidden" name="_method", value="delete"><br>
+#   <input type="submit" value="Delete">
+# </form>
+
+# delete '/tasks/:id' do
+#   @task = Task.find(params[:id])
+
+#   @task.destroy
+#   redirect
+# end
+
+
+

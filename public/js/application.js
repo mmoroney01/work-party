@@ -1,18 +1,25 @@
 $(document).ready(function() {
   taskListener();
+  editButtonListener();
 });
 
-// <div class="assigned">
-//   <% @cleaning.guests.each do |guest| %>
-//     <% guest.tasks.each do |task| %>
-//     <p id="<%= guest.id %>"><%= guest.first_name %> <%= guest.last_name + ":" + " "%><%= task.description %></p>
-//     <% end %>
-//   <% end %>
-// </div>
+var editButtonListener = function(){
+  $("#edit").on("submit", function(){
+    event.preventDefault();
 
- // <%= guest.first_name %> <%= guest.last_name %> will <%= guest.tasks[0].description %><br>
+    var $url = $(this).attr("action");
+    var $method = $(this).attr("method");
 
-// <p id="<%= guest.id %>"><%= guest.first_name %> <%= guest.last_name + ":" + " "%><%= task.description %></p>
+    var request = $.ajax({
+      url: $url,
+      method: $method
+    })
+
+    request.done(function(response){
+      $(".edit-container").append(response);
+    })
+  })
+}
 
 var taskListener = function(){
   $(".task-form").on("submit", function(){
@@ -30,7 +37,7 @@ var taskListener = function(){
 
     request.done(function(response){
       $(".assigned-tasks").append(response);
-      $(".task-form").reset();
+      $(".task-form")[0].reset();
     })
   })
 }

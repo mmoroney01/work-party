@@ -72,15 +72,13 @@ put '/cleanings/:id' do
   end
 end
 
-#NOTE: Can only send texts to myself, must purchase a Twilio number to send to "unverified" numbers
-
 delete '/cleanings/:id' do
   @cleaning = Cleaning.find(params[:id])
   @user = User.find(@cleaning.user_id)
 
   if session[:user_id] == @user.id
-    account_sid = 'AC1ed068dc6c7d93f97f927d064031758e'
-    auth_token = 'dc9591ac96229ac7271edba16a26befe'
+    account_sid = ENV['TWILIO_SID']
+    auth_token = ENV['REST_API']
     @client = Twilio::REST::Client.new account_sid, auth_token
 
     @cleaning.guests.each do |guest|

@@ -14,11 +14,13 @@ def send_message(cleaning, guest, client)
     end
   end
 
-  @client.messages.create(
-    from: '18722013993',
-    to: "#{guest.number}",
-    body: "Hello, #{guest.first_name} #{guest.last_name}. You were at my party last night, and you contributed to the mess currently in my home. I would appreciate it if, at #{@cleaning.start_time.strftime("%H:%M")} today or your earliest convenience, whichever comes first, you make your way to #{@cleaning.location} and #{tasks}."
-  )
+  if tasks != ""
+    @client.messages.create(
+      from: '18722013993',
+      to: "#{guest.number}",
+      body: "Hello, #{guest.first_name} #{guest.last_name}. You were at my party last night, and you contributed to the mess currently in my home. I would appreciate it if, at #{@cleaning.start_time.strftime("%H:%M")} today or your earliest convenience, whichever comes first, you make your way to #{@cleaning.location} and #{tasks}."
+    )
+  end
 end
 
 post '/cleanings' do

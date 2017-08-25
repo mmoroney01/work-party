@@ -4,7 +4,7 @@
   </form>
 </div>
 
-<h2>You have scheduled a work party at <%= @cleaning.location %> that starts at <%= @cleaning.start_time.strftime("%H:%M") %>.<h2>
+<h2 class='cleaning-desc'>You have scheduled a work party at <%= @cleaning.location %> that starts at <%= @cleaning.start_time.strftime("%H:%M") %>.<h2>
 
 <div class="assigned-tasks">
 <% @cleaning.guests.each do |guest| %>

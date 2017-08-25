@@ -47,15 +47,14 @@ get '/cleanings/:id' do
   end
 end
 
-#form can be ajaxified
-
 get '/cleanings/:id/edit' do
   @cleaning = Cleaning.find(params[:id])
 
   if @cleaning.user_id == session[:user_id]
     if request.xhr?
-      erb :'/cleanings/edit'
+      return erb :'/cleanings/_edit', layout: false
     else
+      #else?
     end
   end
 end
@@ -64,11 +63,16 @@ put '/cleanings/:id' do
   @cleaning = Cleaning.find(params[:id])
   @cleaning.assign_attributes(params[:cleaning])
 
-  if @cleaning.save
-    redirect "/cleanings/#{@cleaning.id}"
+  if request.xhr?
+    if @cleaning.save
+      return "You have scheduled a work party at #{@cleaning.location} that starts at #{@cleaning.start_time.strftime("%H:%M")}."
+#      redirect "/cleanings/#{@cleaning.id}"
+    else
+      errors = @cleaning.errors.full_messages
+      erb :'/cleanings/edit'
+    end
   else
-    errors = @cleaning.errors.full_messages
-    erb :'/cleanings/edit'
+     p "oh, well"
   end
 end
 

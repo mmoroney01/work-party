@@ -92,3 +92,14 @@ delete '/cleanings/:id' do
     redirect "/users/#{session[:user_id]}"
   end
 end
+
+#not RESTful, but the first delete sends out the texts, this delete deletes the work party without sending out texts.
+delete '/cleanings/:id/delete' do
+  @cleaning = Cleaning.find(params[:id])
+  @cleaning.destroy
+  redirect "/users/#{session[:user_id]}"
+end
+
+
+
+

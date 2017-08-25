@@ -2,7 +2,26 @@ $(document).ready(function() {
   taskListener();
   editButtonListener();
   submitEditListener();
+  deleteTaskListener();
 });
+
+var deleteTaskListener = function(){
+  $(".assigned-tasks").on("submit", ".delete-task", function(){
+    event.preventDefault();
+
+    var $container = $(this);
+
+    var request = $.ajax({
+      url: $(this).attr("action"),
+      method: 'delete'
+    })
+
+    request.done(function(){
+      $container.closest(".task-container").remove();
+    })
+
+  })
+}
 
 var submitEditListener = function(){
   $(".edit-container").on("submit", "#edit-submit", function(){

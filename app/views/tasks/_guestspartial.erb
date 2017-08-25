@@ -1,1 +1,7 @@
-<li><%= guest.first_name %> <%= guest.last_name + " " + "will" + " "%><%= task.description %></li>
+<div class="task-container">
+  <li><%= guest.first_name %> <%= guest.last_name + " " + "will" + " "%><%= task.description %></li>
+  <form class="delete-task" action='/tasks/<%= task.id %>' method="post">
+     <input type="hidden" name="_method", value="delete"><br>
+     <input type="submit" value="Delete">
+  </form>
+</div>

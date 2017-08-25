@@ -31,19 +31,16 @@ post '/:id/tasks' do
   end
 end
 
-#DELETE TASKS
-
-# <form class="delete-task" action='/tasks/<%= task.id %>' method="post">
-#   <input type="hidden" name="_method", value="delete"><br>
-#   <input type="submit" value="Delete">
-# </form>
-
-# delete '/tasks/:id' do
-#   @task = Task.find(params[:id])
-
-#   @task.destroy
-#   redirect
-# end
+delete '/tasks/:id' do
+  @task = Task.find(params[:id])
+  if request.xhr?
+    if @task.destroy
+      return "smile if you can hear me"
+    else
+      #else?
+    end
+  end
+end
 
 
 

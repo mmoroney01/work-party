@@ -9,10 +9,7 @@
 <div class="assigned-tasks">
 <% @cleaning.guests.each do |guest| %>
   <% guest.tasks.each do |task| %>
-
-  <div id="<%= task.id%>">
-    <%= guest.first_name %> <%= guest.last_name %> will <%= task.description %>
-  </div>
+    <%= erb :'/tasks/_guestspartial', locals: {guest: guest, task: task} %>
   <% end %>
 <% end %>
 </div>
@@ -20,8 +17,22 @@
 
 <%= erb :'/tasks/new' %>
 
+<div>
+  <form action="/cleanings/<%= @cleaning.id %>" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Send Messages">
+  </form>
+</div>
+
 <div class="edit-container">
   <form id="edit" method="get" action="/cleanings/<%= @cleaning.id %>/edit">
       <input type="submit" value="Edit">
+  </form>
+</div>
+
+<div class="delete-container">
+  <form id="delete" action="/cleanings/<%= @cleaning.id %>/delete" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete">
   </form>
 </div>

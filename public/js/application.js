@@ -24,49 +24,6 @@ var submitEditListener = function(){
   })
 }
 
-// var submitEditListener = function(){
-//   $("#edit-submit").on("submit", function(){
-//     event.preventDefault();
-
-//     var foo = $(this);
-//     console.log(foo);
-
-
-//     var $data = $(this).serialize();
-//     var $url = $(this).attr("action");
-
-//     var request = $.ajax({
-//       data: $data,
-//       url: $url,
-//       method: 'put'
-//     })
-
-//     request.done(function(response){
-//       console.log(response);
-//       $("#edit-submit").remove();
-//     })
-//   })
-// }
-
-// var editButtonListener = function(){
-//   $("#edit").on("submit", function(){
-//     event.preventDefault();
-
-//     var $url = $(this).attr("action");
-//     var $method = $(this).attr("method");
-
-//     var request = $.ajax({
-//       url: $url,
-//       method: $method
-//     })
-
-//     request.done(function(response){
-//       console.log(response);
-//       $(".edit-container").append(response);
-//     })
-//   })
-// }
-
 var editButtonListener = function(){
   $(".edit-container").on("submit", "#edit", function(){
     event.preventDefault();
@@ -85,7 +42,6 @@ var editButtonListener = function(){
     })
   })
 }
-
 
 var taskListener = function(){
   $(".task-form").on("submit", function(){

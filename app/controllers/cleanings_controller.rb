@@ -66,7 +66,6 @@ put '/cleanings/:id' do
   if request.xhr?
     if @cleaning.save
       return "You have scheduled a work party at #{@cleaning.location} that starts at #{@cleaning.start_time.strftime("%H:%M")}."
-#      redirect "/cleanings/#{@cleaning.id}"
     else
       errors = @cleaning.errors.full_messages
       erb :'/cleanings/edit'

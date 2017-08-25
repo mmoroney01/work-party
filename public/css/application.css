@@ -1,13 +1,18 @@
+#home {
+  padding: 1% 1% 1% 1%;
+  background-color: #00ccff;
+  margin-right: 20%;
+  border-style: solid;
+}
+
 #work-party {
   display: inline;
   font-family: 'Times New Roman';
-  background-color: #00ccff;
-  padding: 1% 1% 1% 1%;
 }
 
-#description {
-  padding: 1% 1% 1% 1%;
-  background-color: #00ccff;
+#disclaimer {
+/*  border-style: solid;*/
+/*  background-color: #00ccff;*/
 }
 
 body {
@@ -15,6 +20,7 @@ body {
   background-color: lightblue;
   border-color: blue;
   border-style: solid;
+  margin-right: 10%;
   padding-left: 3%;
   padding-bottom: 2%;
   padding-right: 3%;
